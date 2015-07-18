@@ -3,22 +3,22 @@ import http from 'http';
 
 const store = fortune.create({ serializers: [{type: fortune.serializers.JSONAPI}] });
 
-store.defineType('tipoPlato', {
-  nombre: { type: String },
-  platos: { link: 'plato', isArray: true, inverse: 'tipoPlato' }
+store.defineType('dishType', {
+  name: { type: String },
+  dishes: { link: 'dish', isArray: true, inverse: 'dishType' }
 });
 
-store.defineType('plato', {
-  nombre: { type: String },
-  descripcion: { type: String },
-  precio: { type: Number },
-  tipoPlato: { link: 'tipoPlato', isArray: false, inverse: 'platos' },
-  ingredientes: { link: 'ingrediente', isArray: true, inverse: 'platos' }
+store.defineType('dish', {
+  name: { type: String },
+  description: { type: String },
+  price: { type: Number },
+  dishType: { link: 'dishType', isArray: false, inverse: 'dishes' },
+  ingredients: { link: 'ingredient', isArray: true, inverse: 'dishes' }
 });
 
-store.defineType('ingrediente', {
-  nombre: { type: String },
-  platos: { link: 'plato', isArray: true, inverse: 'ingredientes' }
+store.defineType('ingredient', {
+  name: { type: String },
+  dishes: { link: 'dish', isArray: true, inverse: 'ingredients' }
 });
 
 const server = http.createServer(fortune.net.http(store));
