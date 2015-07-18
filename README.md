@@ -4,6 +4,8 @@ El backend para la demo app del Hackday Córdoba de Julio 2015.
 ## Dependencias
 
 - fortune
+- express
+- cors
 
 ## Para ejecutar desde Node
 
