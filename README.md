@@ -14,6 +14,8 @@ node lib/deliciosa-api.js
 
 ## Para ejecutar sin compilar (usando Babel)
 
+**Nota:** este método requiere `npm install -g babel`.
+
 ```bash
 babel-node src/deliciosa-api.js
 ```
