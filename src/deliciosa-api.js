@@ -1,5 +1,6 @@
 import fortune from 'fortune';
-import http from 'http';
+import express from 'express';
+import cors from 'cors';
 
 const store = fortune.create({ serializers: [{type: fortune.serializers.JSONAPI}] });
 
@@ -21,11 +22,11 @@ store.defineType('ingredient', {
   dishes: { link: 'dish', isArray: true, inverse: 'ingredients' }
 });
 
-const server = http.createServer(fortune.net.http(store));
+const server = express();
 
+server.use(cors());
+server.use(fortune.net.http(store));
 store.connect().then(() => {
+  console.log('Starting.');
   server.listen(1337);
-  console.log('Listening');
-}).catch((e) => {
-  console.log(JSON.stringify(e));
 });
